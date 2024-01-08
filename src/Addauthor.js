@@ -30,7 +30,7 @@ const formValidationSchema = yup.object({
 
 })
 
-function AddBook() {
+function Addauthor() {
     const formik = useFormik({
         initialValues: { image: "", title: "", author_name: "", description: "", isbn: "", publicationDate: "", pages: "" },
         validationSchema: formValidationSchema,
@@ -41,7 +41,7 @@ function AddBook() {
     })
     return (
         <div>
-            <h1>Add Book Record</h1>
+            <h1>Add Author Record</h1>
             <form onSubmit={formik.handleSubmit}>
                 <TextField id="image" name="image" label="Image" variant="outlined" fullWidth  onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.touched.image && formik.errors.image ? formik.errors.image : ""}
@@ -63,4 +63,4 @@ function AddBook() {
     )
 }
 
-export default AddBook
+export default Addauthor

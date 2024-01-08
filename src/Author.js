@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete'
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router";
 
 const PROGRAMMING_AUTHORS = [{
     "id": 1,
@@ -53,9 +55,11 @@ const PROGRAMMING_AUTHORS = [{
        })
        )
     }
+    const navigate = useNavigate()
     return (
         <div>
             <h1>Authors</h1>
+            <Button variant="contained" color="success" onClick={()=>navigate('/addauthor')}>Add Author</Button>
             <div className="Root">
 
                 {author.map((item) => {
@@ -70,7 +74,7 @@ const PROGRAMMING_AUTHORS = [{
                                     <h4>Biography : {item.biography}</h4>
                                     <h4>DOB : {item.dob}</h4>
                                     <div className="editdelete">
-                                        < EditIcon color="secondary" />
+                                        < EditIcon color="secondary" onClick={()=>navigate("/editauthor")}/>
                                         <DeleteIcon color="error" onClick={()=>handleDelete(item.id)}/>
                                     </div>
                                 </div>
