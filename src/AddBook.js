@@ -1,8 +1,11 @@
-import React from "react";
+import React  from "react";
 import { useFormik } from "formik";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
+import axios from "axios";
 import * as yup from "yup"
+import { useNavigate } from "react-router";
+import { BOOKAPI } from "./BookAPI";
 
 
 
@@ -31,11 +34,16 @@ const formValidationSchema = yup.object({
 })
 
 function AddBook() {
+    const navigate = useNavigate()
+    
     const formik = useFormik({
         initialValues: { image: "", title: "", author_name: "", description: "", isbn: "", publicationDate: "", pages: "" },
         validationSchema: formValidationSchema,
         onSubmit:(values)=>{
-            console.log("values",values)
+            axios.post(`${BOOKAPI}`, values)
+            .then(res => (res.data))
+            .then(() => navigate("/book"))
+
         }
 
     })
@@ -57,7 +65,7 @@ function AddBook() {
                 {formik.touched.publicationDate && formik.errors.publicationDate ? formik.errors.publicationDate : ""}
                 <TextField id="pages" name="pages" label="Pages" variant="outlined"fullWidth onChange={formik.handleChange} onBlur={formik.handleBlur}  />
                 {formik.touched.pages && formik.errors.pages ? formik.errors.pages : ""}
-                <Button variant="contained" color="success">Add Book</Button>
+                <Button variant="contained" color="success" type="submit">Add Book</Button>
             </form>
         </div>
     )
