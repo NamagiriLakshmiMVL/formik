@@ -18,8 +18,8 @@ function Author() {
     const navigate = useNavigate()
     return (
         <div>
-            <h1>Authors</h1>
-            <Button variant="contained" color="success" onClick={() => navigate('/addauthor')}>Add Author</Button>
+            <h1 style={{textAlign:"center",color:"brown"}}>Authors</h1>
+            <Button style={{marginLeft:"1100px"}} variant="contained" color="success" onClick={() => navigate('/addauthor')}>Add Author</Button>
             <div className="Root">
 
                 {author.map((item) => {
