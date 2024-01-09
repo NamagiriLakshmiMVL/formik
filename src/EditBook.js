@@ -87,7 +87,7 @@ function EditBook() {
                 <TextField id="pages" name="pages" variant="outlined"  onChange={formik.handleChange} value={formik.values.pages} onBlur={formik.handleBlur} />
                 {formik.touched.pages && formik.errors.pages ? formik.errors.pages : ""}
                <br/>
-                <Button variant="contained" color="success" type="submit">Add Book</Button>
+                <Button variant="contained" color="success" type="submit">Edit Book</Button>
                
             </form>
         </div>
