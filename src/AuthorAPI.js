@@ -1,0 +1,1 @@
+export const AUTHORAPI = "https://659d4737633f9aee7909114b.mockapi.io/author"

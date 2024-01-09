@@ -25,8 +25,8 @@ function Book() {
 const navigate = useNavigate()
     return (
         <div>
-            <h1>Books</h1>
-            <Button variant="contained" color="success" onClick={()=>navigate('/addbook')}>Add Book</Button>
+            <h1 style={{textAlign:"center",color:"brown"}}>Books</h1>
+            <Button style={{marginLeft:"1100px"}} variant="contained" color="success" onClick={()=>navigate('/addbook')}>Add Book</Button>
            
             <div className="Root">
                 {book.map((book) => {

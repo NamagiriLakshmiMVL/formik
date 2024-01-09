@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import * as yup from "yup"
 import axios from "axios";
 import { useNavigate } from "react-router";
-import {BOOKAPI} from "./BookAPI";
+import { BOOKAPI } from "./BookAPI";
 import { useParams } from "react-router-dom";
 
 
@@ -37,48 +37,60 @@ const formValidationSchema = yup.object({
 function EditBook() {
     const { bookid } = useParams();
     const navigate = useNavigate();
-    const [product, setProduct] = useState(null)
-   
-    const getProduct = () => {
-        axios.get(`${BOOKAPI}/${bookid}`)
-            .then((res) => setProduct(res.data))
-            
-
-
-    }
-
-    useEffect(() => getProduct(), [])
-
-    const formik = useFormik({
-        initialValues: {image:"one", title: "two", author_name:"three", description:"four", isbn: "five", publicationDate: "six", pages:"seven"},
+   const formik = useFormik({
+        initialValues: { image: "", title: "", author_name: "", description: "", isbn: "", publicationDate: "", pages: "" },
         validationSchema: formValidationSchema,
-        onSubmit: (values) => {
+        onSubmit: values => {
             console.log(values)
             axios.put(`${BOOKAPI}/${bookid}`, values)
                 .then(() => navigate("/book"))
-        }
+               
+        },
+
 
     })
+
     return (
+        <div  className="edit">
         <div>
             <h1>Edit Book Record</h1>
             <form onSubmit={formik.handleSubmit}>
-                <TextField id="image" name="image"  variant="outlined" fullWidth onChange={formik.handleChange} value={formik.values.image}onBlur={formik.handleBlur} />
+                <lable>Image Src:</lable>
+                <TextField id="image" name="image" variant="outlined" onChange={formik.handleChange} value={formik.values.image} onBlur={formik.handleBlur} />
                 {formik.touched.image && formik.errors.image ? formik.errors.image : ""}
-                <TextField id="title" name="title"  variant="outlined" fullWidth onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} />
+                <br/>
+                <label>Title:</label>
+                <TextField id="title" name="title" variant="outlined"  onChange={formik.handleChange} value={formik.values.title} onBlur={formik.handleBlur} />
                 {formik.touched.title && formik.errors.title ? formik.errors.title : ""}
-                <TextField id="author_name" name="author_name"  value={formik.values.author_name} fullWidth variant="outlined" onChange={formik.handleChange} onBlur={formik.handleBlur} />
+               <br/>
+               <label>Author Name:</label>
+               
+                <TextField id="author_name" name="author_name" value={formik.values.author_name}  variant="outlined" onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.touched.author_name && formik.errors.author_name ? formik.errors.author_name : ""}
-                <TextField id="description" name="description"  fullWidth variant="outlined" value={formik.values.description} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+               <br/>
+               <label>Description:</label>
+                <TextField id="description" name="description"  variant="outlined" value={formik.values.description} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.touched.description && formik.errors.description ? formik.errors.description : ""}
-                <TextField id="isbn" name="isbn"  fullWidth variant="outlined" onChange={formik.handleChange}value={formik.values.isbn} onBlur={formik.handleBlur} />
+                <br/>
+                <label>ISBN Number:</label>
+                
+                <TextField id="isbn" name="isbn"  variant="outlined" onChange={formik.handleChange} value={formik.values.isbn} onBlur={formik.handleBlur} />
                 {formik.touched.isbn && formik.errors.isbn ? formik.errors.isbn : ""}
-                <TextField id="publicationDate" name="publicationDate" fullWidth variant="outlined" value={formik.values.publicationDate}onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <br/>
+                <label>Publication Date</label>
+                
+                <TextField id="publicationDate" name="publicationDate"  variant="outlined" value={formik.values.publicationdate} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.touched.publicationDate && formik.errors.publicationDate ? formik.errors.publicationDate : ""}
-                <TextField id="pages" name="pages" variant="outlined" fullWidth onChange={formik.handleChange} value={formik.values.pages} onBlur={formik.handleBlur} />
+                <br/>
+                <label>Pages:</label>
+                
+                <TextField id="pages" name="pages" variant="outlined"  onChange={formik.handleChange} value={formik.values.pages} onBlur={formik.handleBlur} />
                 {formik.touched.pages && formik.errors.pages ? formik.errors.pages : ""}
+               <br/>
                 <Button variant="contained" color="success" type="submit">Add Book</Button>
+               
             </form>
+        </div>
         </div>
     )
 }
