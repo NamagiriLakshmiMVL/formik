@@ -26,8 +26,10 @@ const navigate = useNavigate()
     return (
         <div>
             <h1 style={{textAlign:"center",color:"brown"}}>Books</h1>
-            <Button style={{marginLeft:"1100px"}} variant="contained" color="success" onClick={()=>navigate('/addbook')}>Add Book</Button>
-           
+            <div style={{display:"flex"}}>
+            <Button style={{marginLeft:"900px"}} variant="contained" color="success" onClick={()=>navigate('/addbook')}>Add Book</Button>
+            <Button style={{marginLeft:"50px"}} variant="contained" color="success" onClick={() => navigate('/')}>BACK</Button>
+            </div>
             <div className="Root">
                 {book.map((book) => {
                     return (
